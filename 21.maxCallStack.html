@@ -1,0 +1,20 @@
+<head>
+    <title>Max Call Stack Size</title>
+</head>
+
+<body>
+    <script>
+        let count = 0;
+        function recurse () {
+            count++;
+            recurse();
+        }
+        try {
+            recurse();
+        } catch (e) {
+            alert('maxStackSize = ' + count + '\nerror: ' + e);
+        }
+    </script>
+
+</body>
+</html>
