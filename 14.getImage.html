@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="image-holder"></div>
+    <script>
+      // Эта функция принимает URL изображения и возвращает обещание (promise),
+      // которое разрешается данными об изображении или отклоняется ошибкой.
+      // выполняю задание в окружении браузера, потому что у нативного node нет сущности Image()
+      const loadImage = (url) => {
+        return new Promise((resolve, reject) => {
+          // Создаем новый элемент изображения
+          let img = new Image();
+
+          // Добавляем слушатель события "load", который разрешает обещание данными об изображении при успешной загрузке
+          img.addEventListener("load", () => {
+            resolve({
+              element: img,
+              width: img.width,
+              height: img.height,
+              src: img.src,
+            });
+          });
+
+          // Добавляем прослушиватель события "error", который отклоняет обещание с сообщением об ошибке, если изображение не загружается
+          img.addEventListener("error", () => {
+            reject(new Error(`Ошибка загрузки изображения с адресом: ${url}`));
+          });
+
+          // Устанавливаем исходный адрес изображения, начиная процесс загрузки
+          img.src = url;
+        });
+      };
+
+      //пример вызова функции
+      loadImage("https://source.unsplash.com/random")
+        .then((imgData) => {
+          // Добавляем загруженный элемент изображения к элементу HTML по id
+          document.getElementById("image-holder").appendChild(imgData.element);
+
+          // Выводим сообщение об успешной загрузке с информацией об изображении: высота, ширина, путь
+          console.log("Изображение загружено успешно:", imgData);
+        })
+        .catch((error) => {
+          // Выводим сообщение об ошибке, если изображение не загружено
+          console.error(error);
+        });
+    </script>
+  </body>
+</html>
