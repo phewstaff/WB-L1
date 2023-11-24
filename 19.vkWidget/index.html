@@ -4,8 +4,42 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>vk Widget</title>
+    <link rel="stylesheet" href="index.css" />
   </head>
   <body>
-    VK Widget
+    <div class="scroll" id="itemsContainer"></div>
+
+    <template id="itemTemplate">
+      <div class="item-container">
+        <div class="top">
+          <p class="item-text"></p>
+        </div>
+        <div class="middle">
+          <div class="image-container">
+            <img class="item-image" src="" alt="item-image" />
+          </div>
+        </div>
+        <div class="bottom">
+          <div class="actions">
+            <img class="icons" src="./assets/love.png" alt="" />
+            <span>12</span>
+          </div>
+          <div class="actions">
+            <img class="icons" src="./assets/chat-box.png" alt="" />
+            <span>12</span>
+          </div>
+          <div class="actions">
+            <img class="icons" src="./assets/reply.png" alt="" />
+            <span>12</span>
+          </div>
+          <div class="views">
+            <img class="icons" src="./assets/view.png" alt="" />
+            <span>12</span>
+          </div>
+        </div>
+      </div>
+    </template>
+
+    <script src="./index.js"></script>
   </body>
 </html>

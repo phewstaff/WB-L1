@@ -1,0 +1,64 @@
+html {
+}
+
+.scroll {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  width: 305px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  max-height: 295px;
+  overflow-y: auto;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.item {
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 5px;
+  border: 1px solid #ddd;
+}
+
+.image-container {
+  width: 290px;
+  height: auto;
+  offset: hidden;
+}
+
+.item-image {
+  max-width: 100%;
+  object-fit: contain;
+}
+
+.bottom {
+  display: flex;
+  justify-content: space-between;
+}
+
+.actions,
+.views {
+  padding: 0 8px;
+  background-color: #ccc;
+  border-radius: 12px;
+  width: min-content;
+  min-width: 40px;
+  height: 26px;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  gap: 8px;
+}
+
+.views {
+  background: none;
+}
+
+.icons {
+  width: 22px;
+  height: 22px;
+}
