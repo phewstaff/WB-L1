@@ -78,6 +78,16 @@ function callbackFunc(result) {
     result.response.items.forEach((item) => {
       const newItem = document.importNode(itemTemplate.content, true);
       newItem.querySelector(".item-text").textContent = item.text;
+
+      if (item.attachments[0].photo) {
+        newItem.querySelector(".item-image").src =
+          item.attachments[0].photo.sizes[9]?.url;
+      }
+
+      newItem.querySelector("#likes").textContent = item.likes.count;
+      newItem.querySelector("#comments").textContent = item.comments.count;
+      newItem.querySelector("#reposts").textContent = item.reposts.count;
+      newItem.querySelector("#views").textContent = item.views.count;
       itemsContainer.appendChild(newItem);
     });
   } else {
