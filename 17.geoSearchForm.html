@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Документ</title>
+  </head>
+  <body
+    style="
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    "
+  >
+    <input type="text" id="addressInput" />
+    <select id="addressDropdown"></select>
+
+    <script>
+      const addressInput = document.getElementById("addressInput");
+      const addressDropdown = document.getElementById("addressDropdown");
+
+      // Функция для дебаунсинга
+      function debounce(func, delay) {
+        let timeoutId;
+
+        return function (...args) {
+          if (timeoutId) {
+            clearTimeout(timeoutId);
+          }
+
+          timeoutId = setTimeout(() => {
+            func.apply(this, args);
+          }, delay);
+        };
+      }
+
+      addressInput.addEventListener("input", debounce(performGeocoding, 500));
+
+      function performGeocoding() {
+        const inputValue = addressInput.value;
+
+        const apiKey = "70a1241a-ac3c-4b72-b48f-ee93a1c6a44b";
+        const apiUrl = `https://geocode-maps.yandex.ru/1.x/?apikey=${apiKey}&geocode=${inputValue}&format=json`;
+
+        // Запрос данных по введенному тексту
+        fetch(apiUrl)
+          .then((response) => response.json())
+          .then((data) => {
+            const addresses =
+              data.response.GeoObjectCollection.featureMember.map(
+                (item) => item.GeoObject.name
+              );
+
+            if (addresses.length === 0) {
+              console.log("Адресов не найдено");
+              return;
+            }
+            console.log("Адреса:", addresses);
+
+            // Очистить предыдущие варианты в выпадающем списке
+            addressDropdown.innerHTML = "";
+
+            // Отобразить результаты в выпадающем списке
+            addresses.forEach((address) => {
+              const option = document.createElement("option");
+              option.value = address;
+              option.text = address;
+              addressDropdown.appendChild(option);
+            });
+          })
+          .catch((error) => {
+            console.error("Ошибка:", error);
+          });
+      }
+    </script>
+  </body>
+</html>
