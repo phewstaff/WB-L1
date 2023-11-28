@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Local Storage Script</title>
+  </head>
+  <body>
+    <script>
+      const keyPrefix = "Данные_";
+
+      function fillLocalStorage(sizeInMB) {
+        const dataSize = sizeInMB * 1024;
+        const data = "a".repeat(10000);
+
+        let totalSize = 0;
+
+        // добавляем на каждой итерации данные ,пока local storage не заполнится
+        try {
+          for (let i = 0; i < dataSize; i++) {
+            const key = keyPrefix + i;
+            localStorage.setItem(key, data);
+            totalSize += data.length;
+          }
+        } catch (error) {
+          // отлавливаем ошибку, когда заполнится и выводим результат
+          if (
+            error instanceof DOMException &&
+            error.name === "QuotaExceededError"
+          ) {
+            console.log(
+              "Total size in local storage:",
+              totalSize / (1024 * 1024),
+              "MB"
+            );
+          }
+        }
+      }
+
+      // Вызываем для ориентировачного размера chrome браузера с 5 мб хранилищем
+      fillLocalStorage(5);
+    </script>
+  </body>
+</html>
