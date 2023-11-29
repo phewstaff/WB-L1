@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Data Table</title>
+    <link rel="stylesheet" href="index.css" />
+  </head>
+  <body>
+    <div id="pagination">
+      <span
+        >Page: <span id="currentPage">1</span> /
+        <span id="totalPages">1</span></span
+      >
+      <button id="prevPage">Previous</button>
+      <button id="nextPage">Next</button>
+    </div>
+
+    <table id="dataTable">
+      <tr class="bg-info">
+        <th data-column="fname">
+          Имя <span id="fnameSort" class="sort-indicator">&#x2195;</span>
+        </th>
+        <th data-column="lname">
+          Фамилия <span id="lnameSort" class="sort-indicator">&#x2195;</span>
+        </th>
+        <th data-column="tel">
+          Телефона <span id="telSort" class="sort-indicator">&#x2195;</span>
+        </th>
+        <th data-column="address">
+          Адресс <span id="addressSort" class="sort-indicator">&#x2195;</span>
+        </th>
+        <th data-column="city">
+          Город <span id="citySort" class="sort-indicator">&#x2195;</span>
+        </th>
+        <th data-column="state">
+          Штат <span id="stateSort" class="sort-indicator">&#x2195;</span>
+        </th>
+        <th data-column="zip">
+          ZIP <span id="zipSort" class="sort-indicator">&#x2195;</span>
+        </th>
+      </tr>
+
+      <tbody id="tableBody"></tbody>
+    </table>
+
+    <script src="index.js"></script>
+  </body>
+</html>
