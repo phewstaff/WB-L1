@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form id="testForm">
+      <input id="name" type="text" />
+      <input id="surname" type="text" />
+      <input id="submitButton" type="submit" />
+    </form>
+
+    <script>
+      document
+        .getElementById("testForm")
+        .addEventListener("submit", function (event) {
+          event.preventDefault(); // Убирает дефолтное поведение формы при сабмите
+
+          // получение данных из инпутов
+          var name = document.getElementById("name").value;
+          var surname = document.getElementById("surname").value;
+
+          // Показ данных
+          alert("Name: " + name + "\nSurname: " + surname);
+        });
+    </script>
+  </body>
+</html>
