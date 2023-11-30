@@ -6,16 +6,16 @@
 
 // в описании говорится о совершенном числе, потому что странное число- наоборот, число у котороого из суммы делителей никогда не получится то же самое число.
 
-const checkIsWeirdNumber = (number) => {
+const checkIsPerfectNumber = (number) => {
   dividers = [];
   sum = 0;
   for (let i = 0; i <= number; i++) {
     number % i === 0 ? dividers.push(i) : "";
-  }
+  } // сбор всех делителей без остатка в один массив
 
   dividers.forEach((element) => {
     sum += element;
-  });
+  }); // проходимся по делителям и суммируем их
 
   if (sum / number === 2) {
     return true;
