@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Animation</title>
+    <style>
+      body {
+        margin: 0;
+        overflow: hidden;
+      }
+
+      .animated-div {
+        width: 50px;
+        height: 50px;
+        background-color: blue;
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transition: left 1.5s cubic-bezier(1, 0.23, 0.2, 1.03); /* Настройка перехода для анимации и кривая скорости движения  */
+      }
+    </style>
+  </head>
+  <body>
+    <div class="animated-div"></div>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const div = document.querySelector(".animated-div");
+        let isForward = true;
+
+        // Функция для определения в какую сторону двигаться, вперед или к начальному положению
+        const toggleAnimation = () => {
+          if (isForward) {
+            div.style.left = "80%"; // движение вперед
+          } else {
+            div.style.left = "0"; // возвращение к начальной позиции
+          }
+          isForward = !isForward;
+        };
+
+        // вызов функции внутри интервала, чтобыы зациклить анимацию
+        setInterval(toggleAnimation, 1000);
+      });
+    </script>
+  </body>
+</html>
