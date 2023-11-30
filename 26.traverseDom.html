@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="recursion">
+      <div>
+        <div><div></div></div>
+      </div>
+      <span>something</span>
+      <h1>1</h1>
+      <h3>3</h3>
+      <h5>5</h5>
+    </div>
+
+    <script>
+      function logElement(element) {
+        // Выведем информацию про элемент
+        console.log(element.tagName);
+
+        // Рекурсивный проход по всем вложенным элементам, включая вложенности второго-третьего и т.д порядка
+        for (let i = 0; i < element.children.length; i++) {
+          logElement(element.children[i]);
+        }
+      }
+
+      // Элемент, к которому применится рекурсия
+      const chosenElement = document.getElementById("recursion");
+
+      // Вызова функции
+      logElement(chosenElement);
+    </script>
+  </body>
+</html>
